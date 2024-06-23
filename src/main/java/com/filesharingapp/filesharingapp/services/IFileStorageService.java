@@ -10,4 +10,5 @@ public interface IFileStorageService {
     FileDb store(MultipartFile file) throws IOException;
     FileDb getFile(Long id);
     Stream<FileDb> getAllFiles();
+    FileDb update(Long id, MultipartFile newFile) throws Exception;
 }

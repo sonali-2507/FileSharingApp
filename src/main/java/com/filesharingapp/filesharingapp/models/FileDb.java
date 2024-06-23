@@ -14,7 +14,7 @@ public class FileDb extends BaseModel{
     private String name;
 
     private String type;
-//    private String version;//added version
+    private Long version;//added version
     @Lob
     @Column(name = "data", columnDefinition = "LONGBLOB")
     private byte[] data;

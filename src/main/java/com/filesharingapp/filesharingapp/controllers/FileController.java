@@ -70,5 +70,16 @@ public class FileController {
     //write function to share a file from sender to receiver, both r users, I have created fileshare model, use tha
     // @PostMapping("/share")
 
-
+    @PutMapping("/{id}")
+    public ResponseEntity<ResponseMessage> updateFile(@PathVariable Long id, @RequestParam("file") MultipartFile file) {
+        String message = "";
+        try {
+            storageService.update(id, file);
+            message = "Updated the file successfully: " + file.getOriginalFilename();
+            return ResponseEntity.status(HttpStatus.OK).body(new ResponseMessage(message));
+        } catch (Exception e) {
+            message = "Could not update the file: " + file.getOriginalFilename() + "!";
+            return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(new ResponseMessage(message));
+        }
+    }
 }
