@@ -1,5 +1,6 @@
 package com.filesharingapp.filesharingapp.controllers;
 
+import com.filesharingapp.filesharingapp.Exceptions.ResourceNotFoundException;
 import com.filesharingapp.filesharingapp.dtos.ResponseFile;
 import com.filesharingapp.filesharingapp.dtos.ResponseMessage;
 import com.filesharingapp.filesharingapp.models.FileDb;
@@ -22,6 +23,7 @@ import java.util.stream.Collectors;
 public class FileController {
 
     @Autowired
+
     private IFileStorageService storageService;
 
     @PostMapping("/upload")
@@ -42,30 +44,42 @@ public class FileController {
 
     @GetMapping()
     public ResponseEntity<List<ResponseFile>> getListFiles() {
-        List<ResponseFile> files = storageService.getAllFiles().map(dbFile -> {
-            String fileDownloadUri = ServletUriComponentsBuilder
-                    .fromCurrentContextPath()
-                    .path("/files/")
-                    .path(dbFile.getId().toString())
-                    .toUriString();
+       try{
+           List<ResponseFile> files = storageService.getAllFiles().map(dbFile -> {
+               String fileDownloadUri = ServletUriComponentsBuilder
+                       .fromCurrentContextPath()
+                       .path("/files/")
+                       .path(dbFile.getId().toString())
+                       .toUriString();
 
-            return new ResponseFile(
-                    dbFile.getName(),
-                    fileDownloadUri,
-                    dbFile.getType(),
-                    dbFile.getData().length);
-        }).collect(Collectors.toList());
+               return new ResponseFile(
+                       dbFile.getName(),
+                       fileDownloadUri,
+                       dbFile.getType(),
+                       dbFile.getData().length);
+           }).collect(Collectors.toList());
 
-        return ResponseEntity.status(HttpStatus.OK).body(files);
+           return ResponseEntity.status(HttpStatus.OK).body(files);
+
+       }catch (Exception e){
+           return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(null);
+
+       }
+
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<byte[]> getFile(@PathVariable Long id) {
-        FileDb fileDB = storageService.getFile(id);
+    public ResponseEntity<byte[]> getFile(@PathVariable Long id) throws ResourceNotFoundException {
+        try{
+            FileDb fileDB = storageService.getFile(id);
 
-        return ResponseEntity.ok()
-                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + fileDB.getName() + "\"")
-                .body(fileDB.getData());
+            return ResponseEntity.ok()
+                    .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + fileDB.getName() + "\"")
+                    .body(fileDB.getData());
+        }catch (Exception e){
+            throw new ResourceNotFoundException("File not found with id " + id);
+        }
+
     }
     //write function to share a file from sender to receiver, both r users, I have created fileshare model, use tha
     // @PostMapping("/share")
@@ -82,4 +96,6 @@ public class FileController {
             return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(new ResponseMessage(message));
         }
     }
+
+
 }
