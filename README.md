@@ -1,0 +1,146 @@
+# Getting Started
+# File Sharing Application
+This is a file sharing application that allows users to upload, download,versioning and share files. It also includes user authentication using JWT (JSON Web Tokens).
+## Features
+- File Upload: Users can upload files to the server.
+- File Download: Users can download files from the server.
+- File Sharing: Users can share files with other users.
+- File Versioning: Users can view and download previous versions of files.
+- User Authentication: Users are authenticated using JWT.
+
+## Technologies & tools used
+- Java 17
+- Spring Boot 3.3.1
+- Spring Security
+- JWT
+- MySQL
+- Hibernate
+- Maven
+- Postman
+- IntelliJ 
+- Flyway
+
+## Dependency
+– If you want to use PostgreSQL:
+```xml
+<dependency>
+  <groupId>org.postgresql</groupId>
+  <artifactId>postgresql</artifactId>
+  <scope>runtime</scope>
+</dependency>
+```
+– or MySQL:
+```xml
+<dependency>
+  <groupId>com.mysql</groupId>
+  <artifactId>mysql-connector-j</artifactId>
+  <scope>runtime</scope>
+</dependency>
+```
+## Configure Spring Datasource, JPA, App properties
+- For PostgreSQL:
+```
+spring.datasource.url= jdbc:postgresql://localhost:5432/testdb
+spring.datasource.username= postgres(put your username)
+spring.datasource.password= 123(put your password)
+
+spring.jpa.properties.hibernate.jdbc.lob.non_contextual_creation= true
+spring.jpa.properties.hibernate.dialect= org.hibernate.dialect.PostgreSQLDialect
+
+# Hibernate ddl auto (create, create-drop, validate, update)
+spring.jpa.hibernate.ddl-auto= update
+
+# App Properties
+filesharingapp.app.jwtSecret= ======================sonali=Spring===========================(put your secret key)
+filesharingapp.app.jwtExpirationMs=86400000(put your expiration time)
+```
+- For MySQL
+```
+spring.datasource.url=jdbc:mysql://localhost:3306/testdb_spring?useSSL=false
+spring.datasource.username=root(put your username)
+spring.datasource.password=123456(put your password)
+
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQLDialect
+spring.jpa.hibernate.ddl-auto=update
+
+# App Properties
+filesharingapp.app.jwtSecret= ======================sonali=Spring===========================(put your secret key)
+filesharingapp.app.jwtExpirationMs=86400000(put your expiration time)
+```
+## Dependencies used
+- Spring Web
+- Spring Security
+- MySQL Driver
+- Flyway Migration
+- Lombok
+- Spring Boot DevTools
+- Spring Boot Starter Test
+- Spring Boot Starter Validation
+- jwt (io.jsonwebtoken)
+- Spring Boot Starter Data JPA
+- Spring Boot Configuration Processor
+```
+## Run Spring Boot application
+```
+mvn spring-boot:run
+```
+## Run following SQL insert statements
+
+- INSERT INTO roles(name) VALUES('ROLE_USER');
+- INSERT INTO roles(name) VALUES('ROLE_MODERATOR');
+- INSERT INTO roles(name) VALUES('ROLE_ADMIN');
+```
+
+## API Endpoints
+- signup: POST localhost:8080/api/auth/signup
+```
+{
+  "username": "sonali1",
+  "email": "sonali1@gmail.com",
+    "role":["user"],
+  "password": "sonali1@123"
+  
+}
+``` 
+- signin: POST localhost:8080/api/auth/signin
+```
+{
+  "username": "sonali1",
+  "password": "sonali1@123"
+}
+```
+## Once you sign in, you will get a token. You need to pass this token in the header for the following requests from Authentication tab of postman by selecting Bearer Token.
+- upload file: POST localhost:8080/files/upload
+- in Body select form-data and key as file and as value upload file 
+```
+{
+  "file": "file"(upload file)
+}
+```
+- download file: GET localhost:8080/files/{fileId}
+- share file: POST localhost:8080/share
+```
+{
+"fileDbId":1,
+"senderId":1,
+"receiverId":2,
+"date":"2024-06-22"
+
+}
+```
+- For versioning
+- update file: PUT localhost:8080/files/{fileId}
+
+
+### Reference Documentation
+For further reference, please consider the following sections:
+
+* [Git hub link](https://github.com/sonali-2507/FileSharingApp.git)
+* [Spring Boot Maven Plugin Reference Guide](https://docs.spring.io/spring-boot/docs/3.3.1/maven-plugin/reference/html/)
+* [Create an OCI image](https://docs.spring.io/spring-boot/docs/3.3.1/maven-plugin/reference/html/#build-image)
+* [Spring Boot DevTools](https://docs.spring.io/spring-boot/docs/3.3.1/reference/htmlsingle/index.html#using.devtools)
+* [Spring Configuration Processor](https://docs.spring.io/spring-boot/docs/3.3.1/reference/htmlsingle/index.html#appendix.configuration-metadata.annotation-processor)
+* [Spring Web](https://docs.spring.io/spring-boot/docs/3.3.1/reference/htmlsingle/index.html#web)
+* [Spring Data JPA](https://docs.spring.io/spring-boot/docs/3.3.1/reference/htmlsingle/index.html#data.sql.jpa-and-spring-data)
+* [Spring Security](https://docs.spring.io/spring-boot/docs/3.3.1/reference/htmlsingle/index.html#web.security)
+
