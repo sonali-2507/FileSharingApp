@@ -136,11 +136,5 @@ mvn spring-boot:run
 For further reference, please consider the following sections:
 
 * [Git hub link](https://github.com/sonali-2507/FileSharingApp.git)
-* [Spring Boot Maven Plugin Reference Guide](https://docs.spring.io/spring-boot/docs/3.3.1/maven-plugin/reference/html/)
-* [Create an OCI image](https://docs.spring.io/spring-boot/docs/3.3.1/maven-plugin/reference/html/#build-image)
-* [Spring Boot DevTools](https://docs.spring.io/spring-boot/docs/3.3.1/reference/htmlsingle/index.html#using.devtools)
-* [Spring Configuration Processor](https://docs.spring.io/spring-boot/docs/3.3.1/reference/htmlsingle/index.html#appendix.configuration-metadata.annotation-processor)
-* [Spring Web](https://docs.spring.io/spring-boot/docs/3.3.1/reference/htmlsingle/index.html#web)
-* [Spring Data JPA](https://docs.spring.io/spring-boot/docs/3.3.1/reference/htmlsingle/index.html#data.sql.jpa-and-spring-data)
-* [Spring Security](https://docs.spring.io/spring-boot/docs/3.3.1/reference/htmlsingle/index.html#web.security)
+
 
