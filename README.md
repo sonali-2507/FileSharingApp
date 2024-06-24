@@ -21,14 +21,7 @@ This is a file sharing application that allows users to upload, download,version
 - Flyway
 
 ## Dependency
-– If you want to use PostgreSQL:
-```xml
-<dependency>
-  <groupId>org.postgresql</groupId>
-  <artifactId>postgresql</artifactId>
-  <scope>runtime</scope>
-</dependency>
-```
+
 – or MySQL:
 ```xml
 <dependency>
@@ -38,22 +31,7 @@ This is a file sharing application that allows users to upload, download,version
 </dependency>
 ```
 ## Configure Spring Datasource, JPA, App properties
-- For PostgreSQL:
-```
-spring.datasource.url= jdbc:postgresql://localhost:5432/testdb
-spring.datasource.username= postgres(put your username)
-spring.datasource.password= 123(put your password)
 
-spring.jpa.properties.hibernate.jdbc.lob.non_contextual_creation= true
-spring.jpa.properties.hibernate.dialect= org.hibernate.dialect.PostgreSQLDialect
-
-# Hibernate ddl auto (create, create-drop, validate, update)
-spring.jpa.hibernate.ddl-auto= update
-
-# App Properties
-filesharingapp.app.jwtSecret= ======================sonali=Spring===========================(put your secret key)
-filesharingapp.app.jwtExpirationMs=86400000(put your expiration time)
-```
 - For MySQL
 ```
 spring.datasource.url=jdbc:mysql://localhost:3306/testdb_spring?useSSL=false
@@ -114,7 +92,7 @@ mvn spring-boot:run
 - in Body select form-data and key as file and as value upload file 
 ```
 {
-  "file": "file"(upload file)
+  "file": uploaded file
 }
 ```
 - download file: GET localhost:8080/files/{fileId}
