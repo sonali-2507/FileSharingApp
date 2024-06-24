@@ -19,7 +19,7 @@ public class FileStorageService implements IFileStorageService{
     private FileRepository fileRepository;
 
     public FileDb store(MultipartFile file) throws IOException {
-//        System.out.println("Data size: " + file.getBytes().length);
+
         String fileName = StringUtils.cleanPath(file.getOriginalFilename());
         FileDb fileDb = new FileDb(fileName, file.getContentType(), file.getBytes());
         fileDb.setVersion(1L); //set version
@@ -45,17 +45,4 @@ public class FileStorageService implements IFileStorageService{
         throw new FileStorageException("Could not store file " + newFile.getOriginalFilename());
     }
 }
-//public FileDb storeFile(MultipartFile file) {
-//    String fileName = StringUtils.cleanPath(file.getOriginalFilename());
-//    try {
-//        if (fileName.contains("..")) {
-//            throw new FileStorageException("Sorry! Filename contains invalid path sequence " + fileName);
-//        }
-//        FileDb dbFile = new FileDb(fileName, file.getContentType(), file.getBytes());
-//        dbFile.setVersion(1); // set the version to 1
-//        return fileRepository.save(dbFile);
-//    } catch (IOException ex) {
-//        throw new FileStorageException("Could not store file " + fileName + ". Please try again!", ex);
-//    }
-//}
 }

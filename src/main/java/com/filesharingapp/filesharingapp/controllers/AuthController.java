@@ -1,6 +1,5 @@
 package com.filesharingapp.filesharingapp.controllers;
 import com.filesharingapp.filesharingapp.Exceptions.BadCredentialsException;
-import com.filesharingapp.filesharingapp.Exceptions.ResourceNotFoundException;
 import com.filesharingapp.filesharingapp.models.ERole;
 import com.filesharingapp.filesharingapp.models.Role;
 import com.filesharingapp.filesharingapp.models.User;
@@ -72,8 +71,6 @@ try{
 }
 
   }
-
-
   @PostMapping("/signup")
   public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
     if (userRepository.existsByUsername(signUpRequest.getUsername())) {
@@ -132,7 +129,5 @@ try{
   public ResponseEntity<String> handleBadCredentialsException(BadCredentialsException ex) {
     return new ResponseEntity<>(ex.getMessage(), HttpStatus.UNAUTHORIZED);
   }
-
-
 
 }

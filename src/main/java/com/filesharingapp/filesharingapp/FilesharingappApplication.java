@@ -6,7 +6,6 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Component;
 
 @SpringBootApplication
-//@ComponentScan(basePackages = {"com.filesharingapp.filesharingapp.security", "com.filesharingapp.filesharingapp.security.jwt.JwtUtils"})
 public class FilesharingappApplication {
 
 	public static void main(String[] args) {

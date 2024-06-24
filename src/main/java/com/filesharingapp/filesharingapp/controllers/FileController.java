@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -23,7 +22,6 @@ import java.util.stream.Collectors;
 public class FileController {
 
     @Autowired
-
     private IFileStorageService storageService;
 
     @PostMapping("/upload")
@@ -32,8 +30,6 @@ public class FileController {
         String message = "";
         try {
             storageService.store(file);
-
-
             message = "Uploaded the file successfully: " + file.getOriginalFilename();
             return ResponseEntity.status(HttpStatus.OK).body(new ResponseMessage(message));
         } catch (Exception e) {
@@ -41,7 +37,6 @@ public class FileController {
             return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(new ResponseMessage(message));
         }
     }
-
     @GetMapping()
     public ResponseEntity<List<ResponseFile>> getListFiles() {
        try{
@@ -81,8 +76,6 @@ public class FileController {
         }
 
     }
-    //write function to share a file from sender to receiver, both r users, I have created fileshare model, use tha
-    // @PostMapping("/share")
 
     @PutMapping("/{id}")
     public ResponseEntity<ResponseMessage> updateFile(@PathVariable Long id, @RequestParam("file") MultipartFile file) {

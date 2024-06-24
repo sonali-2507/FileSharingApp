@@ -3,7 +3,6 @@ package com.filesharingapp.filesharingapp.services;
 import com.filesharingapp.filesharingapp.models.User;
 import com.filesharingapp.filesharingapp.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -26,8 +25,6 @@ public class UserService implements IUserService{
 
         return user.get();
     }
-
-
     @Override
     public List<User> getAllUsers() {
         return userRepository.findAll();

@@ -6,10 +6,6 @@ import java.util.List;
 
 public interface IUserService {
     User getUser(Long senderId);
-
-
-
     List<User> getAllUsers();
-
     User getUserByUsername(String username);
 }

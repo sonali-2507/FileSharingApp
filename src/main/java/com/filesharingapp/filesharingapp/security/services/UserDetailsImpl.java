@@ -1,8 +1,5 @@
 package com.filesharingapp.filesharingapp.security.services;
-
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import com.filesharingapp.filesharingapp.models.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

@@ -1,7 +1,4 @@
 package com.filesharingapp.filesharingapp.security.jwt;
-
-
-
 import com.filesharingapp.filesharingapp.security.services.UserDetailsImpl;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
@@ -18,9 +15,6 @@ import java.util.Date;
 @Component
 public class JwtUtils {
   private static final Logger logger = LoggerFactory.getLogger(JwtUtils.class);
-
-//  @Value("${bezkoder.app.jwtSecret}")
-//  private String jwtSecret;
 
   @Value("${filesharingapp.app.jwtSecret}")
   private String jwtSecret;

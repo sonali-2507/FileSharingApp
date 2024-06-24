@@ -23,12 +23,6 @@ public class UserController {
         this.userService = userService;
     }
 
-//    @PostMapping()
-//    public ResponseEntity<User> createUser(@RequestBody UserDto userDto) {
-//        User user = userService.createUser(userDto.getUsername(),userDto.getEmail(), userDto.getPassword());
-//        return ResponseEntity.ok(user);
-//    }
-
     @GetMapping("/{id}")
     public ResponseEntity<User> getUserById(@PathVariable Long id) {
         User user = userService.getUser(id);

@@ -14,7 +14,4 @@ public class FileSharingDto {
     private Long receiverId;
     private Date date;
 
-//    public Long getFileId() {
-//        return fileDbId;
-//    }
 }
